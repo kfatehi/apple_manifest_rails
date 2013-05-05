@@ -1,0 +1,4 @@
+- if @checker.installable?
+  = javascript_tag "window.location.href = '#{@itms_url}'"
+- else
+  Your device is not provisioned. Please email your UDID (#{@udid}) to steve@digitalfilmtree.com

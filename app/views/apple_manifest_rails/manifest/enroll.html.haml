@@ -1,0 +1,15 @@
+- if @ios_device
+  #device
+    #header
+      %h1#title Enroll Device
+    #content
+      %ol.instructions
+        %li Tap Start to begin process
+        %li Press "Install" to allow access to device UDID
+        %li Enter your email on the following page to complete the process.
+      %br
+      .container{style:'padding:20px;font-size:24pt;text-align:center;font-family:helvetica'}
+        %a.btn{href:"/enroll/mobileconfig"} Start
+        
+- else 
+  %p{style:'color:black;text-align:center'} Please return to this page with your iOS device

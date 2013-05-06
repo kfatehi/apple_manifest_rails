@@ -1,10 +1,14 @@
 module AppleManifest
   module Install
     class IPA
-      MANIFEST = {
-        template: Rails.root.join('mobile_build', 'manifest.plist').to_s,
-        tmp: Rails.root.join('tmp', 'manifest.plist').to_s
-      }
+
+      def template
+        Rails.root.join('mobile_build', 'manifest.plist').to_s
+      end
+
+      def tmp
+        Rails.root.join('tmp', 'manifest.plist').to_s
+      end
 
       attr_accessor :base_url
 
@@ -17,19 +21,19 @@ module AppleManifest
       end
 
       def url
-        "#{self.base_url}/install/critique.ipa"
+        "#{self.base_url}/install/app.ipa"
       end
 
       def write_manifest
-        File.open(MANIFEST[:tmp], "w") do |f|
-          File.open(MANIFEST[:template], "r") do |tmpl|
+        File.open(tmp, "w") do |f|
+          File.open(template, "r") do |tmpl|
             f.write tmpl.read.gsub("[IPAURL]", self.url)
           end
         end
       end
 
       def manifest_path
-        File.join(Rails.root.join("tmp","manifest.plist"))
+        Rails.root.join("tmp","manifest.plist").to_s
       end
     end
   end

@@ -18,7 +18,7 @@ module AppleManifestRails
       udid = parser.get 'UDID'
       version = parser.get 'VERSION'
       product = parser.get 'PRODUCT'
-      # you probly wanna save this shit under user, but whatever
+      # TODO log this stuff
       redirect_to "#{request.url}/check_install?udid=#{udid}", status: 301
     end
 

@@ -48,4 +48,5 @@ The app.ipa file is the actual compiled binary archive from Xcode. The engine wi
 Yeah! Fork it, make it better! I know there are others out there that dislike relying on Testflight and Hockeyapp too -- that functionality can just be a mountable engine!
 
 ## License
-MIT
+
+MIT or WTFPL

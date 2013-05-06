@@ -10,15 +10,16 @@ Gem::Specification.new do |s|
   s.authors     = ["Keyvan Fatehi"]
   s.email       = ["keyvanfatehi@gmail.com"]
   s.homepage    = "https://github.com/keyvanfatehi/apple_manifest_rails"
-  desc = "Mountable Rails engine for capturing iOS UDID, check if IPA is installable, and installing if so."
-  s.summary     = desc
-  s.description = desc
+  s.summary     = "Rails engine for iOS app distribution"
+  s.description = "Mountable Rails engine for iOS UDID capture and app (IPA) distribution. Uses the IPA's embedded.mobileprovision to determine if IPA can be installed."
+  s.licenses    = ['MIT', 'WTFPL']
+  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "WTFPL-LICENSE", "Rakefile", "README.md"]
 
-  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
+  s.post_install_message = "Thanks for installing AppleManifestRails! See https://github.com/keyvanfatehi/apple_manifest_rails to see how to use this engine in your rails app to distribute your iOS applications."
+
+  s.required_ruby_version = '>= 1.9.2'
 
   s.add_dependency "rails", "~> 3.2.11"
   s.add_dependency 'haml-rails', '~> 0.3.5'
   s.add_dependency 'rubyzip', '~> 0.9.9'
-  # s.add_dependency "jquery-rails"
-  # s.add_development_dependency "sqlite3"
 end

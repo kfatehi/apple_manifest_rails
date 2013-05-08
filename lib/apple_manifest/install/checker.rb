@@ -12,6 +12,11 @@ module AppleManifest
         @installable = self.mobileprovision.include? udid
       end
 
+      def installable? 
+        @installable
+      end
+      
+      private
       def extract_mobileprovision_from ipa_path
         tempfile = File.join('tmp', 'embedded.mobileprovision')
         FileUtils.rm tempfile if File.exists? tempfile
@@ -25,10 +30,6 @@ module AppleManifest
         end
         File.open(tempfile) {|f| self.mobileprovision = f.read }
         FileUtils.rm tempfile
-      end
-
-      def installable? 
-        @installable
       end
     end
   end

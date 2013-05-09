@@ -32,7 +32,7 @@ The engine will not work without these.
 
 Optionally, you can override these defaults by setting up an initializer in your rails app, e.g. `config/initializers/apple_manifest_rails.rb`
 
-```
+```ruby
 AppleManifestRails.configure do |config|
   config.page_title = "Who needs testflight? I've got apple_manifest_rails!"
   config.template_dir = Rails.root.join('apple_manifest_rails', 'templates')

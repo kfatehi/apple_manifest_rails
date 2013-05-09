@@ -1,4 +1,4 @@
-- if @checker.installable?
+- if @checker.installable?(@udid)
   = javascript_tag "window.location.href = '#{@itms_url}'"
 - else
   Your device is not provisioned and so cannot install.

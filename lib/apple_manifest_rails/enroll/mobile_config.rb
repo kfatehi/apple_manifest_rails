@@ -1,4 +1,4 @@
-module AppleManifest
+module AppleManifestRails
   module Enroll
     class MobileConfig
       attr_accessor :next_url
@@ -25,7 +25,7 @@ module AppleManifest
 
       private
       def template_path
-        Rails.root.join('mobile_build', 'Profile.mobileconfig').to_s
+        AppleManifestRails.template('Profile.mobileconfig')
       end
     end
   end

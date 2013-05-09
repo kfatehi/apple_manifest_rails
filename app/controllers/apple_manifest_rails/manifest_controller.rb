@@ -8,13 +8,13 @@ module AppleManifestRails
     end
 
     def mobileconfig
-      enroll = AppleManifest::Enroll::MobileConfig.new(request)
+      enroll = AppleManifestRails::Enroll::MobileConfig.new(request)
       enroll.write_mobileconfig
       send_file enroll.outfile_path, type: enroll.mime_type
     end
 
     def extract_udid
-      parser = AppleManifest::Enroll::ResponseParser.new(request)
+      parser = AppleManifestRails::Enroll::ResponseParser.new(request)
       udid = parser.get 'UDID'
       version = parser.get 'VERSION'
       product = parser.get 'PRODUCT'
@@ -25,8 +25,8 @@ module AppleManifestRails
     # Check install
     def check_install
       @udid = params[:udid]
-      @checker = AppleManifest::Install::Checker.new(@udid, 'app.ipa')
-      set_itms_url if @checker.installable?
+      @checker = AppleManifestRails::Install::Checker.new
+      set_itms_url if @checker.installable?(@udid)
     end
 
     # Install (Send IPA)
@@ -36,7 +36,7 @@ module AppleManifestRails
     end
 
     def manifest
-      install = AppleManifest::Install::IPA.new(request)
+      install = AppleManifestRails::Install::IPA.new(request)
       install.write_manifest
       send_file install.manifest_path
     end
@@ -47,12 +47,11 @@ module AppleManifestRails
 
     private
     def ipa_path
-      filename = 'app.ipa'
-      Rails.root.join('mobile_build', 'builds', filename).to_s
+      AppleManifestRails.ipa_path
     end
 
     def set_itms_url
-      @itms_url = AppleManifest::Install::IPA.new(request).itms_uri
+      @itms_url = AppleManifestRails::Install::IPA.new(request).itms_uri
     end
   end
 end

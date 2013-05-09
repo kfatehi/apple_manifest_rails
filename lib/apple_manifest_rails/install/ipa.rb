@@ -1,12 +1,12 @@
-module AppleManifest
+module AppleManifestRails
   module Install
     class IPA
 
       def template
-        Rails.root.join('mobile_build', 'manifest.plist').to_s
+        AppleManifestRails.template('manifest.plist')
       end
-
-      def tmp
+      
+      def manifest_path
         Rails.root.join('tmp', 'manifest.plist').to_s
       end
 
@@ -25,15 +25,11 @@ module AppleManifest
       end
 
       def write_manifest
-        File.open(tmp, "w") do |f|
+        File.open(manifest_path, "w") do |f|
           File.open(template, "r") do |tmpl|
             f.write tmpl.read.gsub("[IPAURL]", self.url)
           end
         end
-      end
-
-      def manifest_path
-        Rails.root.join("tmp","manifest.plist").to_s
       end
     end
   end

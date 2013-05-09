@@ -1,19 +1,18 @@
 require 'fileutils'
 require 'zip/zipfilesystem'
 
-module AppleManifest
+module AppleManifestRails
   module Install
     class Checker
       attr_accessor :mobileprovision
 
-      def initialize udid, appname
-        ipa_path = Rails.root.join('mobile_build', 'builds', appname).to_s
+      def initialize
+        ipa_path = AppleManifestRails.ipa_path
         extract_mobileprovision_from ipa_path
-        @installable = self.mobileprovision.include? udid
       end
 
-      def installable? 
-        @installable
+      def installable? udid
+        self.mobileprovision.include? udid
       end
       
       private

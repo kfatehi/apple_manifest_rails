@@ -1,4 +1,4 @@
-module AppleManifest
+module AppleManifestRails
   module Enroll
     class ResponseParser
       attr_accessor :body
